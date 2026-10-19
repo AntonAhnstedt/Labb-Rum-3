@@ -1,7 +1,5 @@
 import csv
 
-support_cases = []        
-
 class Support:
     def __init__(self, id: int, customer: str, category: str, priority: str, status: str):
         self.id = id
@@ -11,11 +9,21 @@ class Support:
         self.status = status
 
     def __repr__(self):
-        return f"Support(id={self.id}, customer={self.customer}, category={self.category}, priority={self.priority}, status={self.status})"
+        return f"Support(id={self.id}, customer={self.customer!r}, category={self.category!r}, priority={self.priority!r}, status={self.status!r})"
+
+    def __str__(self):
+        return f"ID: {self.id}, customer: {self.customer}, category: {self.category}, priority: {self.priority}, status: {self.status}"
+
+    def is_open(self):
+        return self.status == "Öppet"
 
 
-with open("supportarenden.csv", "r", encoding="utf-8") as file:
+support_cases = []
+
+with open("Labb-Rum-3/supportarenden.csv", "r", encoding="utf-8") as file:
     reader = csv.reader(file)
+
+    next(reader)
 
     for row in reader:
         case = Support(
@@ -27,3 +35,7 @@ with open("supportarenden.csv", "r", encoding="utf-8") as file:
         )
 
         support_cases.append(case)
+
+for case in support_cases:
+    if case.is_open():
+        print(case)
