@@ -18,7 +18,7 @@ with open("supportarenden.csv", "r", encoding="utf-8") as file:
     reader = csv.reader(file)
 
     for row in reader:
-        support_cases = Support(
+        case = Support(
             row[0],
             row[1],
             row[2],
@@ -26,4 +26,4 @@ with open("supportarenden.csv", "r", encoding="utf-8") as file:
             row[4]
         )
 
-        support_cases.append({support_cases})
+        support_cases.append(case)
